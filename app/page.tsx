@@ -1,6 +1,6 @@
-import { BlogPosts } from 'app/components/blogs'
-import { NowPosts } from './components/now'
-
+import { BlogPosts } from "app/components/blogs";
+import { NowPosts } from "./components/now";
+import Link from "next/link";
 
 function ArrowIcon() {
   return (
@@ -16,35 +16,84 @@ function ArrowIcon() {
         fill="currentColor"
       />
     </svg>
-  )
+  );
 }
 
 export default function Page() {
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
+      <h1 className="mb-4 text-2xl font-semibold tracking-tighter">
         Shobith Mallya
       </h1>
-      <p className="mb-4">
-        {`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in
-        Vim's keystroke commands and tabs' flexibility for personal viewing
-        preferences. This extends to my support for static typing, where its
-        early error detection ensures cleaner code, and my preference for dark
-        mode, which eases long coding sessions by reducing eye strain.`}
+      <p className="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
+      This is supposed to be the about section. Claude says I gotta use this as a reference to write content for this section. I'll update this when I find time :)
       </p>
-      <div className="my-8">
-        <h2 className="text-lg font-semibold tracking-tighter">What I'm doing <span className='underline'><a href="https://nownownow.com/about">now</a></span>?</h2>
-        <NowPosts showPreviousUpdates={false} />
-      </div>
-      <div className="my-8">
-        <div className="flex items-center">
-          <h2 className="text-lg font-semibold tracking-tighter mr-2">Blogs</h2>
-          <ArrowIcon />
+        <div className="text-xs my-6 rounded-lg border border-neutral-200 bg-neutral-50 p-2 dark:border-neutral-800 dark:bg-neutral-950 font-mono">
+          <div>
+            <strong>Your Persona Story:</strong> Expand on your persona in a
+            narrative format. Don't just list bullet points. Tell a story that
+            connects your early start, your diverse experiences, and your
+            passion for human potential. Weave in elements like:
+          </div>
+          <ul className="mt-2" style={{ listStyleType: 'disc', paddingLeft: '1rem' }}>
+            <li>
+              From building MVPs at 18 to leading product teams at
+              23...(Highlights your rapid growth)
+            </li>
+            <li>
+              "...Driven by the belief that technology should empower, not
+              overwhelm, people..." (Connects to your human capital vision)
+            </li>
+            <li>
+              "...Bridging the gap between technical complexity and human
+              needs through design thinking and AI..." (Reiterates your core
+              skills)
+            </li>
+          </ul>
+
+          <div className="mt-4">
+            <strong>My Approach to Product Building:</strong> Use 3-4 concise
+            bullet points or short paragraphs to highlight your key
+            principles:
+          </div>
+          <ul className="mt-2" style={{ listStyleType: 'disc', paddingLeft: '1rem' }}>
+            <li>
+              Human-Centered by Design: Emphasize your user research, empathy,
+              and accessibility focus (Rapture, Effinity, WeCP examples).
+            </li>
+            <li>
+              Data-Informed & Technically Grounded: Highlight your engineering
+              understanding and analytical approach (ClearFeed onboarding,
+              WeCP AI, Mantrika.AI).
+            </li>
+            <li>
+              Growth-Oriented & Scalable Solutions: Showcase your growth
+              mindset and experience with PLG, scaling (ClearFeed customer
+              growth, WeCP ARR).
+            </li>
+            <li>
+              Impact-Driven & Purposeful: Reiterate your "human capital"
+              vision and desire to solve meaningful problems (mention examples
+              across your projects).
+            </li>
+          </ul>
         </div>
-        <p className="mb-4 text-sm text-neutral-600 dark:text-neutral-400">also serving as my journal. sort most recent posts first.</p>
+
+      <div className="my-8">
+        <Link href="/blog">
+          <div className="flex items-center">
+            <h2 className="text-lg font-semibold tracking-tighter mr-2 hover:underline">
+              Blogs
+            </h2>
+            
+          </div>
+        </Link>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
+              also using this as a journal. please do not complain of the incosistent timelines to write another. might take months, years, decades, who knows?
+            </p>
+
         <BlogPosts />
       </div>
-
     </section>
-  )
+  );
 }

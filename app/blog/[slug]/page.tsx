@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
 import { baseUrl } from 'app/sitemap'
+import { UpvoteButton } from 'app/components/upvote-button'
+import { getUpvotes } from 'app/lib/redis'
 
 export async function generateStaticParams() {
   let posts = getBlogPosts()
@@ -51,12 +53,14 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function Blog({ params }) {
+export default async function Blog({ params }) {
   let post = getBlogPosts().find((post) => post.slug === params.slug)
 
   if (!post) {
     notFound()
   }
+
+  const upvotes = await getUpvotes(post.slug)
 
   return (
     <section>
@@ -93,6 +97,7 @@ export default function Blog({ params }) {
       <article className="prose">
         <CustomMDX source={post.content} />
       </article>
+      <UpvoteButton slug={post.slug} initialCount={upvotes} />
     </section>
   )
 }

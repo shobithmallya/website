@@ -6,10 +6,10 @@ const navItems = {
   },
   '/blog': {
     name: 'blog',
-  }
-  // '/now': {
-  //   name: 'now',
-  // },
+  },
+  '/now': {
+    name: 'now',
+  },
 }
 
 export function Navbar() {

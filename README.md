@@ -1,3 +1,3 @@
 # Website
 
-All things [shobith.vercel.app](https://shobith.vercel.app)
+All things [shob](https://shobith.vercel.app)

@@ -49,8 +49,8 @@ function getMDXData(dir) {
   })
 }
 
-export function getNowPosts() {
-  return getMDXData(path.join(process.cwd(), 'app', 'now', 'nows'))
+export function getPosts() {
+  return getMDXData(path.join(process.cwd(), 'app', 'posts'))
 }
 
 export function formatDate(date: string, includeRelative = false) {
@@ -88,3 +88,4 @@ export function formatDate(date: string, includeRelative = false) {
 
   return `${fullDate} (${formattedDate})`
 }
+

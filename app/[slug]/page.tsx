@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
-import { formatDate, getNowPosts } from 'app/now/utils'
+import { formatDate, getPosts } from 'app/posts/utils'
 import { baseUrl } from 'app/sitemap'
 
 export async function generateStaticParams() {
-  let posts = getNowPosts()
+  let posts = getPosts()
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -12,7 +12,7 @@ export async function generateStaticParams() {
 }
 
 export function generateMetadata({ params }) {
-  let post = getNowPosts().find((post) => post.slug === params.slug)
+  let post = getPosts().find((post) => post.slug === params.slug)
   if (!post) {
     return
   }
@@ -35,7 +35,7 @@ export function generateMetadata({ params }) {
       description,
       type: 'article',
       publishedTime,
-      url: `${baseUrl}/now/${post.slug}`,
+      url: `${baseUrl}/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -51,22 +51,23 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function Blog({ params }) {
-  let post = getNowPosts().find((post) => post.slug === params.slug)
+export default async function Post({ params }) {
+  let post = getPosts().find((post) => post.slug === params.slug)
 
   if (!post) {
     notFound()
   }
 
+
   return (
-    <section>
+    <section className='text-gray-900'>
       <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
+            '@type': 'Article',
             headline: post.metadata.title,
             datePublished: post.metadata.publishedAt,
             dateModified: post.metadata.publishedAt,
@@ -74,7 +75,7 @@ export default function Blog({ params }) {
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
               : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/now/${post.slug}`,
+            url: `${baseUrl}/${post.slug}`,
             author: {
               '@type': 'Person',
               name: 'Shobith Mallya',
@@ -82,17 +83,19 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
+      <h1 className="title font-semibold text-2xl tracking-tighter text-gray-900">
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        <p className="text-sm text-gray-500">
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
       <article className="prose">
         <CustomMDX source={post.content} />
       </article>
+      {/* <UpvoteButton slug={post.slug} initialCount={upvotes} /> */}
     </section>
   )
 }
+

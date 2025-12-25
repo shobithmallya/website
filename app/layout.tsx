@@ -2,10 +2,8 @@ import './global.css'
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
-import { Navbar } from './components/nav'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import Footer from './components/footer'
 import { baseUrl } from './sitemap'
 
 export const metadata: Metadata = {
@@ -54,9 +52,7 @@ export default function RootLayout({
     >
       <body className="antialiased min-h-screen bg-custom flex items-center justify-center py-8 overflow-x-hidden">
         <main className="flex-auto min-w-0 flex flex-col px-4 md:px-0 max-w-xl w-full">
-          {/* <Navbar /> */}
           {children}
-          {/* <Footer /> */}
           <Analytics />
           <SpeedInsights />
         </main>

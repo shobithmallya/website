@@ -97,5 +97,6 @@ export default async function Post({ params }) {
         <CustomMDX source={post.content} />
       </article>
     </section>
+    
   );
 }

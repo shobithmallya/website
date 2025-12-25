@@ -45,7 +45,28 @@ function CustomLink(props) {
 }
 
 function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" loading="lazy" {...props} />
+  // For local images, ensure width and height are provided
+  // Next.js Image component requires these for optimization
+  const imageProps = {
+    ...props,
+    alt: props.alt || 'Blog post image',
+    className: 'rounded-lg',
+    loading: 'lazy' as const,
+  };
+
+  // If width and height aren't provided, use responsive defaults
+  if (!props.width || !props.height) {
+    return (
+      <span style={{ display: 'block', position: 'relative', width: '100%', height: 'auto' }}>
+        <Image
+          {...imageProps}
+          style={{ width: '50%', height: 'auto' }}
+        />
+      </span>
+    );
+  }
+
+  return <Image {...imageProps} />;
 }
 
 function Code({ children, ...props }) {

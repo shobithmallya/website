@@ -1,3 +1,1 @@
-# Website
-
-All things [shobith.vercel.app](https://shobith.vercel.app)
+All things [shobithmallya.com](https://shobithmallya.com)

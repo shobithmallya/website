@@ -50,7 +50,7 @@ export default function RootLayout({
         GeistMono.variable
       )}
     >
-      <body className="antialiased min-h-screen bg-custom flex items-center justify-center py-8 overflow-x-hidden">
+      <body className="antialiased min-h-screen bg-custom flex items-center justify-center py-8 px-4 md:px-0 overflow-x-hidden">
         <main className="flex-auto min-w-0 flex flex-col px-4 md:px-0 max-w-xl w-full">
           {children}
           <Analytics />

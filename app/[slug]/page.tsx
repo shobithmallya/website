@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { CustomMDX } from "app/components/mdx";
-import { formatDate, getPosts } from "app/posts/utils";
+import { PrivatePostGate } from "app/components/private-post-gate";
+import { formatDate, getPosts, isPrivatePost } from "app/posts/utils";
 import { baseUrl } from "app/sitemap";
 
 export const revalidate = 3600;
@@ -48,12 +50,18 @@ export function generateMetadata({ params }) {
   };
 }
 
+function isUnlocked(slug: string) {
+  return cookies().get(`unlock-${slug}`)?.value === "1";
+}
+
 export default async function Post({ params }) {
   const post = getPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
     notFound();
   }
+
+  const locked = isPrivatePost(post.metadata) && !isUnlocked(post.slug);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -93,10 +101,13 @@ export default async function Post({ params }) {
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className="prose">
-        <CustomMDX source={post.content} />
-      </article>
+      {locked ? (
+        <PrivatePostGate slug={post.slug} />
+      ) : (
+        <article className="prose">
+          <CustomMDX source={post.content} />
+        </article>
+      )}
     </section>
-    
   );
 }

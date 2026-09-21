@@ -1,0 +1,277 @@
+.earLeftAwake,
+.earRightAwake,
+.earLeftSleep,
+.earRightSleep {
+  transform-origin: bottom center;
+  transform-box: fill-box;
+}
+
+@keyframes awakeLeftEarTwitch {
+  0%,
+  9% {
+    transform: rotate(0deg);
+  }
+  12% {
+    transform: rotate(-8deg);
+  }
+  16%,
+  34% {
+    transform: rotate(0deg);
+  }
+  38% {
+    transform: rotate(-12deg);
+  }
+  42% {
+    transform: rotate(-6deg);
+  }
+  48%,
+  58% {
+    transform: rotate(0deg);
+  }
+  62% {
+    transform: rotate(-30deg);
+  }
+  70% {
+    transform: rotate(-28deg);
+  }
+  78% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes awakeRightEarTwitch {
+  0%,
+  9% {
+    transform: rotate(0deg);
+  }
+  12% {
+    transform: rotate(6deg);
+  }
+  16%,
+  34% {
+    transform: rotate(0deg);
+  }
+  38% {
+    transform: rotate(10deg);
+  }
+  42% {
+    transform: rotate(4deg);
+  }
+  48%,
+  58% {
+    transform: rotate(0deg);
+  }
+  62% {
+    transform: rotate(-30deg);
+  }
+  70% {
+    transform: rotate(-28deg);
+  }
+  78% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.earLeftAwake {
+  animation: awakeLeftEarTwitch 12s ease-in-out infinite;
+}
+
+.earRightAwake {
+  animation: awakeRightEarTwitch 12s ease-in-out infinite;
+}
+
+@keyframes sleepingLeftEar {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes sleepingRightEar {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+}
+
+.earLeftSleep {
+  animation: sleepingLeftEar 4s ease-in-out infinite;
+}
+
+.earRightSleep {
+  animation: sleepingRightEar 4s ease-in-out infinite;
+}
+
+.eyeLeft,
+.eyeRight {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.eyeLeft {
+  animation-name: eyeLeftPos, eyeBlink;
+}
+
+.eyeRight {
+  animation-name: eyeRightPos, eyeBlink;
+}
+
+@keyframes eyeLeftPos {
+  0% {
+    x: 6.477px;
+    y: 18.666px;
+  }
+  10% {
+    x: 7.277px;
+    y: 18.666px;
+  }
+  20% {
+    x: 7.277px;
+    y: 18.666px;
+  }
+  40% {
+    x: 5.477px;
+    y: 18.066px;
+  }
+  55% {
+    x: 6.477px;
+    y: 18.666px;
+  }
+  75% {
+    x: 5.977px;
+    y: 19.166px;
+  }
+  100% {
+    x: 6.477px;
+    y: 18.666px;
+  }
+}
+
+@keyframes eyeRightPos {
+  0% {
+    x: 18.078px;
+    y: 18.666px;
+  }
+  10% {
+    x: 18.878px;
+    y: 18.666px;
+  }
+  20% {
+    x: 18.878px;
+    y: 18.666px;
+  }
+  40% {
+    x: 16.578px;
+    y: 18.066px;
+  }
+  55% {
+    x: 18.078px;
+    y: 18.666px;
+  }
+  75% {
+    x: 17.078px;
+    y: 19.166px;
+  }
+  100% {
+    x: 18.078px;
+    y: 18.666px;
+  }
+}
+
+@keyframes eyeBlink {
+  0%,
+  19%,
+  23%,
+  50%,
+  54%,
+  56%,
+  90%,
+  100% {
+    transform: scaleY(1);
+  }
+  21%,
+  52% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes zFloat1 {
+  0% {
+    transform: translate(0, 0) scale(0.7);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(4px, -14px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes zFloat2 {
+  0% {
+    transform: translate(0, 0) scale(0.6);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(6px, -16px) scale(0.9);
+    opacity: 0;
+  }
+}
+
+@keyframes zFloat3 {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(8px, -18px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.zFloat1 {
+  animation: zFloat1 3s ease-out infinite;
+  animation-fill-mode: both;
+}
+
+.zFloat2 {
+  animation: zFloat2 3s ease-out infinite 1s;
+  animation-fill-mode: both;
+}
+
+.zFloat3 {
+  animation: zFloat3 3s ease-out infinite 2s;
+  animation-fill-mode: both;
+}

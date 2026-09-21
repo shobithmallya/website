@@ -1,11 +1,16 @@
 import fs from 'fs'
 import path from 'path'
 
-type Metadata = {
+export type Metadata = {
   title: string
   publishedAt: string
   summary: string
   image?: string
+  password?: string
+}
+
+export function isPrivatePost(metadata: Metadata) {
+  return Boolean(metadata.password)
 }
 
 function parseFrontmatter(fileContent: string) {
